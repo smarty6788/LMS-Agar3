@@ -356,18 +356,15 @@ io.on('connection', function (socket) {
     socket.on('pass', function(data) {
         if (data[0] === c.adminPass) {
             console.log('[ADMIN] ' + currentPlayer.name + ' just logged in as an admin!');
-            socket.emit('serverMSG', 'Welcome back ' + currentPlayer.name);
-            socket.broadcast.emit('serverMSG', currentPlayer.name + ' just logged in as admin!');
+            socket.emit('serverMSG', 'You have logged in as admin, ' + currentPlayer.name);
+            //socket.broadcast.emit('serverMSG', currentPlayer.name + ' just logged in as admin!');
             currentPlayer.admin = true;
         } else {
-            
+            console.log('[ADMIN] ' + currentPlayer.name + ' attempted to log in with incorrect password.');
+            socket.emit('serverMSG', 'Password incorrect, attempt logged.');
             // TODO: Actually log incorrect passwords.
-              console.log('[ADMIN] ' + currentPlayer.name + ' attempted to log in with incorrect password.');
-              socket.emit('serverMSG', 'Password incorrect, attempt logged.');
-             pool.query('INSERT INTO logging SET name=' + currentPlayer.name + ', reason="Invalid login attempt as admin"');
         }
     });
-
     socket.on('kick', function(data) {
         if (currentPlayer.admin) {
             var reason = '';
