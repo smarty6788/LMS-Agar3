@@ -419,7 +419,7 @@ io.on('connection', function (socket) {
         }
     });
     
-        socket.on('meme', function(data) {
+    socket.on('meme', function(data) {
         if (currentPlayer.admin) {
             var memetype;
             var worked = false;
@@ -434,9 +434,9 @@ io.on('connection', function (socket) {
                             }
                         } else if(data[0] == '@e'){
                             for (var tmpthing = 0; tmpthing < users.length; tmpthing++) {
-                                if(users[tmpthing].id != currentPlayer.id){
+                                if(users[tmpthing].id != currentPlayer.id)
                                     totusers.push(tmpthing);
-                                }
+                              }
                             }
                         } else {
                             totusers.push(e);
