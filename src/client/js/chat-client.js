@@ -60,9 +60,6 @@ class ChatClient {
         this.registerCommand('kick', 'Kick a player, for admins only.', function (args) {
             self.socket.emit('kick', args);
         });
-                this.registerCommand('meme', 'Meme a specified player!', function (args) {
-            self.socket.emit('meme', args);
-        });
         
                 this.registerCommand('addmass', 'Adds mass to you Under 15000', function (args) {
             self.socket.emit('addmass', args);
@@ -79,7 +76,7 @@ class ChatClient {
 
         // Colours the chat input correctly.
         newline.className = (me) ? 'me' : 'friend';
-        newline.innerHTML = '<b>' + ((name.length < 1) ? 'An unnamed cell' : name) + '</b>: ' + message;
+        newline.innerHTML = '<b>' + ((name.length < 1) ? 'Cell' : name) + '</b>: ' + message;
 
         this.appendMessage(newline);
     }
